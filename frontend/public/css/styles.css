@@ -1,0 +1,279 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  line-height: 1.5;
+  color: #566b78; /* #555; */
+}
+
+#dashboard, #meetingDetails, #profile {
+  margin: 0 auto;
+  max-width: 60em;
+  padding: 2em 0.5em;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  color: #333;
+  font-weight: bold;
+}
+
+#meetingDetails h4 {
+  color: #3d84a8;
+}
+
+#meetingDetails .row-form {
+  display: grid;
+  grid-template-columns: 12fr 5fr 5fr;
+  text-align: left;
+}
+
+#meetingDetails .attribute-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--column-width-min), 1fr));
+}
+
+@media screen and (min-width: 737px) {
+  #meetingDetails .names {
+      --column-width-min: 14em;
+  }
+  #meetingDetails .numbers {
+      --column-width-min: 6em;
+  }
+}
+
+h2 {
+  margin-top: 0.15em;
+  padding-top: 0.15em;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+h3 {
+  margin-top: 0.3em;
+  padding-top: 0.3em;
+}
+
+a {
+  color: #e81c4f;
+}
+
+/* Headings */
+.big-heading {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+/* Containers */
+
+.container-fluid {
+  padding: 7% 15%;
+}
+
+#login .container-fluid, #register .container-fluid {
+    padding: 3% 15% 0%;
+    text-align: center;
+}
+
+/* Sections  */
+
+.colored-section {
+  color: #fff;
+  background-color: #3d84a8;/* #ff4c68; */
+}
+
+.white-section {
+  background-color: #fff;
+}
+
+/* Navigation Bar */
+
+.navbar {
+  padding: 0 0 1.5rem; /* was 4.5 */
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat";
+  font-weight: 100;
+}
+
+#dashboard .dashboard, #login .login, #register .register, #profile .profile {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Title Section */
+
+#title .container-fluid {
+  padding: 3% 15% 7%;
+  text-align: left;
+}
+
+.title-image {
+  transform: rotate(15deg);
+  width: 55%;
+  position: absolute;
+  right: 30%;
+  margin-left: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Download Buttons */
+
+.auth-button {
+  margin: 5% 3% 5% 0;
+}
+
+/* Features */
+
+#features {
+  background-color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+}
+
+.feature {
+  padding: 5%;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+.feature-icon {
+  color: #46cdcf;/* #ef8172; #46cdcf */
+  margin-bottom: 1rem;
+}
+
+.feature-icon:hover {
+  color: #ff4c68;
+}
+
+/* Testimonial Section */
+
+#testimonials {
+  background-color: #ef8172;
+}
+
+.testimonial-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+#press {
+  background-color: #ef8172;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* Pricing Section */
+
+#pricing {
+  padding: 100px;
+}
+
+.price-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.pricing-column {
+  padding: 2% 5%;
+}
+
+@media (max-width: 1028px) {
+  #title {
+    text-align: center;
+  }
+  .title-image {
+    position: static;
+    transform: rotate(0);
+  }
+}
+
+/* Call to Action */
+
+/* Footer */
+
+.copyright {
+  margin-top: 1rem;
+}
+
+.contact-icon {
+  margin: 1%
+}
+
+/* Profile form */
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+}
+
+*[role="form"] h2 {
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 5%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+#profile .form-horizontal {
+  position: relative;
+}
+#profile .form-group {
+    display:flex;
+}
+#profile .form-group label {
+  flex: 1;
+  text-align:right;
+}
+#profile .form-group input {
+  flex: 4;
+}
+#profile .form-group p {
+  flex: 4;
+  text-align: left;
+}
+#profile .form-group a, #profile .form-group button {
+  flex: 1;
+}
+#profile .x {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #566b78;
+}
