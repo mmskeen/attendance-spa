@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 const Profile = ({ user }) => {
 
   useEffect(() => {
+    console.log("user: ", user);
     document.body.id = "profile";
     return () => document.body.id = "";
   });
@@ -11,7 +12,7 @@ const Profile = ({ user }) => {
   return (
     <div className="container">
       <h2>Profile</h2>
-      <form className="form-horizontal mt-4 pt-4">
+      <form className="form-horizontal mt-4 pt-4" role="form">
         <div className="form-group">
           <label htmlFor="firstName" className="col-sm-3 control-label">
             First Name

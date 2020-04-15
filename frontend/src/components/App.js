@@ -25,7 +25,7 @@ const App = (props) => {
       auth0_domain={process.env.REACT_APP_AUTH0_DOMAIN}
       auth0_client_id={process.env.REACT_APP_AUTH0_CLIENT_ID}>
       <div className="App">
-        <Navbar />
+        {/* <Navbar /> */}
         <Main />
         {/* <Main isAuthenticated={isAuthenticated}
         login={login}
