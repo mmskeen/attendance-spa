@@ -1,33 +1,37 @@
 import React, { useEffect } from 'react';
+import { useAuth } from "react-use-auth";
+import Navbar from './Navbar';
 
 const LandingPage = () => {
+  const { login } = useAuth();
+
   useEffect(() => {
     document.body.id = "home";
-    return () => document.body.id = "";
   });
 
   const year = new Date().getFullYear();
   return (
     <div>
+      {/* Title */}
       <section id="title" className="colored-section">
         <div className="container-fluid">
-          {/* Nav Bar */}
-      &lt;%- include("partials/navbar-loggedOut") %&gt;
-      {/* Title */}
+          <Navbar colored={true} />
           <div className="row">
             <div className="col-lg-6">
               <h1 className="big-heading">Make attendance a breeze.</h1>
               <a
                 className="btn btn-dark btn-lg auth-button"
                 role="button"
-                href="/login"
+                href="#"
+                onClick={login}
               >
                 Login
           </a>
               <a
                 className="btn btn-outline-light btn-lg auth-button"
                 role="button"
-                href="/register"
+                href="#"
+                onClick={login}
               >
                 Register
           </a>
@@ -71,29 +75,21 @@ const LandingPage = () => {
           <a
             className="btn btn-dark btn-lg auth-button"
             role="button"
-            href="/login"
+            href="#"
+            onClick={login}
           >
             Login
       </a>
           <a
             className="btn btn-outline-light btn-lg auth-button"
             role="button"
-            href="/register"
+            href="#"
+            onClick={login}
           >
             Register
       </a>
         </div>
       </section>
-      {/* Footer */}
-      <footer id="footer" className="white-section">
-        <div className="container-fluid">
-          <i className="fab fa-twitter contact-icon" />
-          <i className="fab fa-facebook contact-icon" />
-          <i className="fab fa-instagram contact-icon" />
-          <i className="fas fa-envelope contact-icon" />
-          <p className="copyright">© Copyright {year} Attending</p>
-        </div>
-      </footer>
     </div>
   );
 }

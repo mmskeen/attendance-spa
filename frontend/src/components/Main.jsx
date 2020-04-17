@@ -3,10 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 import { useAuth } from "react-use-auth";
 import ProtectedRoute from "./ProtectedRoute";
 import LandingPage from './LandingPage';
-import Navbar from './Navbar';
+import Footer from './Footer';
 import Attendance from './Attendance';
 import MeetingDetails from './MeetingDetails';
 import Profile from './Profile';
+import ProfileEdit from './ProfileEdit';
 import AUTHCallback from "./AUTHCallback";
 
 
@@ -22,7 +23,7 @@ const Main = () => {
   //   _id: "5db88ff9e8f87b150d29d0df"
   // }
 
-  const loginCB = (userData) => {
+  const updateUserCB = (userData) => {
     console.log("In Main.jsx, loginCB, data: ", userData);
     setDbUser(userData);
   }
@@ -59,20 +60,23 @@ const Main = () => {
 
   return (
     <div>
-      <Navbar isAuthenticated={isAuthenticated} />
       <Switch>
-        <Route exact path="/" component={Greeting} />
-        <Route exact path="/attendance" render={props => (
-          <Attendance {...props} loginUser={user} dbUser={dbUser} onLogin={loginCB} />
+        <Route exact path="/" component={LandingPage} />
+        <ProtectedRoute exact path="/attendance" component={Attendance}
+          dbUser={dbUser} onLogin={updateUserCB} />
         )} />
-        <Route exact path="/meetings" render={props => (
-          <MeetingDetails {...props} user={dbUser} />
+        <ProtectedRoute exact path="/meetings" component={MeetingDetails}
+          user={dbUser} />
         )} />
-        <Route exact path="/profile" render={props => (
-          <Profile {...props} user={dbUser} />
+        <ProtectedRoute exact path="/profile" component={Profile}
+          user={dbUser} />
+        )} />
+        <ProtectedRoute exact path="/profile-edit" component={ProfileEdit}
+          user={dbUser} onSaveUser={updateUserCB} />
         )} />
         <Route exact path="/auth0_callback" component={AUTHCallback} />
       </Switch>
+      <Footer />
     </div>
   );
 }

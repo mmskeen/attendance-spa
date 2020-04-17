@@ -1,9 +1,10 @@
 import React from "react";
 
+
 const AttendedMeeting = ({ userId, meeting, deleteCallback }) => {
   const handleDelete = e => {
     e.preventDefault();
-    if (window.confirm(`Delete meeting ${meeting.title}?`)) {
+    if (window.confirm(`Delete attendance at meeting ${meeting.title}?`)) {
       fetch(`/users/${userId}/attendEvent`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -15,7 +16,7 @@ const AttendedMeeting = ({ userId, meeting, deleteCallback }) => {
   };
   return (<li className="list-group-item list-group-item-action">
     <form onSubmit={handleDelete}>
-      <span className="name">{meeting.title} </span>
+      <span className="name">{meeting.title}: {meeting.code} </span>
       <button type="submit" className="btn btn-danger btn-xs pull-right remove-item"> Delete <span className="glyphicon glyphicon-remove"></span>
       </button>
     </form>

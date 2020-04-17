@@ -1,12 +1,60 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "react-use-auth";
 
-function Navbar({ isAuthenticated }) {
+function Navbar({ colored }) {
+  const { isAuthenticated, login, logout, user } = useAuth();
+
+  const history = useHistory();
+
+  const handleLogout = () => {
+    logout();
+    history.push("/");
+  }
+
+  const handleLogin = () => {
+    login();
+  }
+
+
+  const NavbarLoggedIn = () => (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <Link className="nav-link dashboard" to="/attendance">
+          Dashboard
+      </Link>
+      </li>
+      <li className="nav-item"><a className="nav-link" href="#" onClick={handleLogout}>
+        Logout
+    </a>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link profile" to="/profile">
+          Profile
+      </Link>
+      </li>
+    </ul>
+  );
+
+  const NavbarLoggedOut = () => (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <a className="nav-link login" href="#" onClick={handleLogin}>Login</a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link register" href="/#" onClick={handleLogin}>Register</a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="#footer">Contact</a>
+      </li>
+    </ul>
+  );
+
   return (
-    <section className="white-section">
+    <section id="navbar-section" className={colored ? "colored-section" : "white-section"}>
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light">
-          <Link className="navbar-brand" to="/">
+        <nav className={"navbar navbar-expand-lg " + (colored ? "navbar-dark" : "navbar-light")}>
+          <Link className="navbar-brand" to={isAuthenticated() ? "/attendance" : "/"}>
             Attending
           </Link>
           <button
@@ -21,27 +69,11 @@ function Navbar({ isAuthenticated }) {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link className="nav-link dashboard" to="/attendance">
-                  Dashboard
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/logout">
-                  Logout
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link profile" to="/profile">
-                  Profile
-                </Link>
-              </li>
-            </ul>
+            {isAuthenticated() ? <NavbarLoggedIn /> : <NavbarLoggedOut />}
           </div>
         </nav>
       </div>
-    </section>
+    </section >
   );
 }
 

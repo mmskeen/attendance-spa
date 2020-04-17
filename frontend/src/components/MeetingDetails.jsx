@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 import queryString from "query-string";
 
 const Attendee = ({ attendee }) => {
@@ -47,7 +48,6 @@ const MeetingDetails = (props) => {
   useEffect(() => {
     getMeetingDetails();
     document.body.id = "meetingDetails";
-    return () => document.body.id = "";
   }, []);
 
   const deleteAttendeeCB = () => {
@@ -77,7 +77,7 @@ const MeetingDetails = (props) => {
 
   return (
     <div>
-      include("partials/navbar-loggedIn") %&gt;
+      <Navbar colored={false} />
       <h2>Meeting Details</h2>
       <h3>{"Title: " + meetingDetails.title}</h3>
       <h4>{"Code: " + meetingDetails.code}</h4>

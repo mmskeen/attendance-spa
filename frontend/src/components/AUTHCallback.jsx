@@ -4,12 +4,12 @@ import { useAuth } from "react-use-auth";
 const AUTHCallback = () => {
   const { handleAuthentication } = useAuth();
   useEffect(() => {
-    handleAuthentication();
+    handleAuthentication({ postLoginRoute: "/attendance" });;
   }, [handleAuthentication]);
   return (
-    <h1>
+    <h3>
       This is the auth callback page, you should be redirected immediately.
-    </h1>
+    </h3>
   );
 };
 

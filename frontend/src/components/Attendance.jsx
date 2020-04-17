@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "react-use-auth";
+import Navbar from "./Navbar";
 import AttendedMeeting from "./AttendedMeeting";
 import HostedMeeting from "./HostedMeeting";
 
 const Attendance = (props) => {
+  const { isAuthenticated, user: loginUser } = useAuth();
+
   const [dbUser, setDbUser] = useState({ email: "" });
   const [meetingsAttended, setMeetingsAttended] = useState([]);
   const [meetingsHosted, setMeetingsHosted] = useState([]);
 
   const updateDbUser = () => {
-    console.log("props: ", props);
-    console.log("props.dbUser.email: ", props.dbUser.email)
-    console.log("props.loginUser.email: ", props.loginUser.email)
-    console.log("dbUser.email: ", dbUser.email)
-    if (props.dbUser.email === props.loginUser.email) {
+    if (props.dbUser.email === loginUser.email) {
       if (props.dbUser.email === dbUser.email) {
         console.log("All emails match!");
         return;
@@ -24,7 +24,7 @@ const Attendance = (props) => {
     fetch(`/users/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: props.loginUser.email }),
+      body: JSON.stringify({ email: loginUser.email }),
     }).then(response => response.json()
     ).then(data => {
       console.log("data.doc: ", data.doc);
@@ -73,8 +73,7 @@ const Attendance = (props) => {
     getAttendedMeetings();
     getHostedMeetings();
     document.body.id = "dashboard";
-    return () => document.body.id = "";
-  }, [dbUser.email]);
+  }, [dbUser.email, loginUser.email]);
 
   const attendMeeting = e => {
     e.preventDefault();
@@ -116,7 +115,7 @@ const Attendance = (props) => {
 
   return (
     <div>
-      &lt;%- include("partials/navbar-loggedIn") %&gt;
+      <Navbar colored={false} />
       {/* Features */}
       <h2>Dashboard</h2>
       <div className="container mt-4">
@@ -168,7 +167,7 @@ const Attendance = (props) => {
                   </div>
                   <button type="submit" className="btn btn-dark">
                     Host Meeting
-            </button>
+                  </button>
                 </form>
               </div>
             </div>
@@ -181,6 +180,7 @@ const Attendance = (props) => {
       <div className="list-group mx-5">
         {meetingsAttended}
       </div>
+      <br />
       <h3>Meetings Hosted</h3>
       <div className="list-group mx-5">
         {meetingsHosted}

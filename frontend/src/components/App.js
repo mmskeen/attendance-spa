@@ -32,7 +32,6 @@ const App = (props) => {
         logout={logout}
         loginUser={user}
       /> */}
-        <Footer />
       </div>
     </AuthProvider>
   );
