@@ -35,28 +35,6 @@ const Main = () => {
   }, []);
 
 
-  const Greeting = () => {
-    useEffect(() => {
-      console.log("isAuthenticatedGr: ", isAuthenticated());
-      console.log("userGr: ", user);
-      console.log("email: ", user.email);
-    }, []);
-    const greeting = isAuthenticated() ?
-      <h1>Hi, {user.name}!</h1> :
-      <h1>Hi there! Please login.</h1>;
-
-    const loginButtons = isAuthenticated() ?
-      <button onClick={logout}>Logout</button> :
-      <button onClick={login}>Login</button>;
-    return (
-      <div>
-        {greeting}
-        {loginButtons}
-      </div>
-    );
-  }
-
-
 
   return (
     <div>

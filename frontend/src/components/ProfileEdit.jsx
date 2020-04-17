@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const ProfileEdit = ({ user, onSaveUser }) => {
@@ -7,6 +7,8 @@ const ProfileEdit = ({ user, onSaveUser }) => {
   useEffect(() => {
     document.body.id = "profile";
   });
+
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ const ProfileEdit = ({ user, onSaveUser }) => {
     ).then(data => {
       console.log(data);
       onSaveUser(data);
+      history.push("/profile");
     })
       .catch(error => alert("Error: " + error));
 
