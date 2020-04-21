@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "frontend": "cd frontend && npm start",
-    "api": "cd api && nodemon app.js",
+    "api": "cd api && node app.js",
     "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\""
   },
   "dependencies": {
