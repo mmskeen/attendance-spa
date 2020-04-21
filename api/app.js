@@ -14,8 +14,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
 })
 
-app.use(json());
-app.use(urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/meetings', meetingRoutes);
 app.use('/api/users', userRoutes);
 
