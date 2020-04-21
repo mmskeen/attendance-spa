@@ -14,13 +14,13 @@ const Attendance = (props) => {
   const updateDbUser = () => {
     if (props.dbUser.email === loginUser.email) {
       if (props.dbUser.email === dbUser.email) {
-        console.log("All emails match!");
+        // console.log("All emails match!");
         return;
       }
       setDbUser(props.dbUser);
       return;
     }
-    console.log("emails don't match!");
+    // console.log("emails don't match!");
     fetch(`/api/users/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -62,6 +62,7 @@ const Attendance = (props) => {
   }
   const updateHostedMeetingsCB = () => {
     getHostedMeetings();
+    getAttendedMeetings();
   }
   useEffect(() => {
     updateDbUser();
