@@ -1,20 +1,11 @@
 require('dotenv').config();
-import path from 'path';
-import express from "express";
-const app = express();
-const port = process.env.PORT || 3001;
-import { json, urlencoded } from "body-parser";
-import meetingRoutes from './routes/meetings';
-import userRoutes from './routes/users';
-
-// Pre ES6:
-// const path = require('path');
-// const express = require("express"),
-//   app = express(),
-//   port = process.env.PORT || 3001,
-//   bodyParser = require("body-parser"),
-//   meetingRoutes = require('./routes/meetings'),
-//   userRoutes = require('./routes/users');
+const path = require('path');
+const express = require("express"),
+  app = express(),
+  port = process.env.PORT || 3001,
+  bodyParser = require("body-parser"),
+  meetingRoutes = require('./routes/meetings'),
+  userRoutes = require('./routes/users');
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'frontend/build')))
