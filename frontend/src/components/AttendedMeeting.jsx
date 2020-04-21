@@ -5,7 +5,7 @@ const AttendedMeeting = ({ userId, meeting, deleteCallback }) => {
   const handleDelete = e => {
     e.preventDefault();
     if (window.confirm(`Delete attendance at meeting ${meeting.title}?`)) {
-      fetch(`/users/${userId}/attendEvent`, {
+      fetch(`/api/users/${userId}/attendEvent`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ meetingCode: meeting.code })

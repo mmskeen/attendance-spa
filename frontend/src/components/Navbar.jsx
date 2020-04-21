@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "react-use-auth";
 
 function Navbar({ colored }) {
-  const { isAuthenticated, login, logout, user } = useAuth();
+  const { isAuthenticated, login, logout } = useAuth();
 
   const history = useHistory();
 
@@ -20,11 +20,11 @@ function Navbar({ colored }) {
   const NavbarLoggedIn = () => (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <Link className="nav-link dashboard" to="/attendance">
+        <Link className="nav-link dashboard" to="/dashboard">
           Dashboard
       </Link>
       </li>
-      <li className="nav-item"><a className="nav-link" href="#" onClick={handleLogout}>
+      <li className="nav-item"><a className="nav-link" href="/" onClick={handleLogout}>
         Logout
     </a>
       </li>
@@ -39,10 +39,10 @@ function Navbar({ colored }) {
   const NavbarLoggedOut = () => (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <a className="nav-link login" href="#" onClick={handleLogin}>Login</a>
+        <Link className="nav-link login" to="/dashboard" onClick={handleLogin}>Login</Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link register" href="/#" onClick={handleLogin}>Register</a>
+        <Link className="nav-link register" to="/dashboard" onClick={handleLogin}>Register</Link>
       </li>
       <li className="nav-item">
         <a className="nav-link" href="#footer">Contact</a>
@@ -54,7 +54,7 @@ function Navbar({ colored }) {
     <section id="navbar-section" className={colored ? "colored-section" : "white-section"}>
       <div>
         <nav className={"navbar navbar-expand-lg " + (colored ? "navbar-dark" : "navbar-light")}>
-          <Link className="navbar-brand" to={isAuthenticated() ? "/attendance" : "/"}>
+          <Link className="navbar-brand" to={isAuthenticated() ? "/dashboard" : "/"}>
             Attending
           </Link>
           <button

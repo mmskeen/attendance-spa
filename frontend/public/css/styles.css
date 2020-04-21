@@ -232,7 +232,7 @@ p {
 }
 
 /* Profile form */
-*[role="form"] {
+.profile-form {
     max-width: 530px;
     padding: 15px;
     margin: 0 auto;
@@ -240,7 +240,7 @@ p {
     background-color: #f2f2f2;
 }
 
-*[role="form"] h2 {
+.profile-form h2 {
     font-family: 'Open Sans' , sans-serif;
     font-size: 40px;
     font-weight: 600;

@@ -48,6 +48,7 @@ const MeetingDetails = (props) => {
   useEffect(() => {
     getMeetingDetails();
     document.body.id = "meetingDetails";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteAttendeeCB = () => {
@@ -55,14 +56,11 @@ const MeetingDetails = (props) => {
   }
 
   const getMeetingDetails = () => {
-    console.log(props.location);
     const queries = queryString.parse(props.location.search);
-    const mtgURL = "/meetings/" + queries.id;
-    console.log("mtgURL: ", mtgURL);
+    const mtgURL = "/api/meetings/" + queries.id;
     fetch(mtgURL)
       .then(response => response.json())
       .then(meeting => {
-        console.log(meeting);
         setMeetingDetails({
           ...meeting,
           attendees: meeting.attendees.map(a => (

@@ -4,7 +4,7 @@ import { useAuth } from "react-use-auth";
 const AUTHCallback = () => {
   const { handleAuthentication } = useAuth();
   useEffect(() => {
-    handleAuthentication({ postLoginRoute: "/attendance" });;
+    handleAuthentication({ postLoginRoute: "/dashboard" });;
   }, [handleAuthentication]);
   return (
     <h3>

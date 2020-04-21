@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const HostedMeeting = ({ userId, meeting, deleteCallback }) => {
   const handleDelete = e => {
-    console.log("Meeting: ", meeting);
+    // console.log("Meeting: ", meeting);
     e.preventDefault();
     if (window.confirm(`Delete meeting ${meeting.title}?`)) {
-      fetch(`/meetings/${meeting._id}`, {
+      fetch(`/api/meetings/${meeting._id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       }).then(data => console.log(data.text()))

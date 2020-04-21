@@ -5,7 +5,7 @@ import AttendedMeeting from "./AttendedMeeting";
 import HostedMeeting from "./HostedMeeting";
 
 const Attendance = (props) => {
-  const { isAuthenticated, user: loginUser } = useAuth();
+  const { user: loginUser } = useAuth();
 
   const [dbUser, setDbUser] = useState({ email: "" });
   const [meetingsAttended, setMeetingsAttended] = useState([]);
@@ -21,24 +21,22 @@ const Attendance = (props) => {
       return;
     }
     console.log("emails don't match!");
-    fetch(`/users/`, {
+    fetch(`/api/users/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: loginUser.email }),
     }).then(response => response.json()
     ).then(data => {
-      console.log("data.doc: ", data.doc);
       setDbUser(data.doc);
       return data;
     }).then(data => {
-      console.log("data 2nd time: ", data);
       props.onLogin(data.doc);
     });
   }
 
   const getAttendedMeetings = () => {
 
-    const mtgURL = "/users/" + dbUser._id + "/meetingsAttended";
+    const mtgURL = "/api/users/" + dbUser._id + "/meetingsAttended";
     fetch(mtgURL)
       .then(response => response.json())
       .then(meetings => {
@@ -49,7 +47,7 @@ const Attendance = (props) => {
       });
   }
   const getHostedMeetings = () => {
-    const mtgURL = "/users/" + dbUser._id + "/meetingsHosted";
+    const mtgURL = "/api/users/" + dbUser._id + "/meetingsHosted";
     fetch(mtgURL)
       .then(response => response.json())
       .then(meetings => {
@@ -73,11 +71,12 @@ const Attendance = (props) => {
     getAttendedMeetings();
     getHostedMeetings();
     document.body.id = "dashboard";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dbUser.email, loginUser.email]);
 
   const attendMeeting = e => {
     e.preventDefault();
-    fetch(`/users/${dbUser._id}/attendEvent`, {
+    fetch(`/api/users/${dbUser._id}/attendEvent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code: e.target.meetingCode.value }),
@@ -100,8 +99,7 @@ const Attendance = (props) => {
       host: dbUser._id,
       title: e.target.meetingDescription.value
     }
-    console.log("Fetchbody: ", fetchBody);
-    fetch(`/meetings/`, {
+    fetch(`/api/meetings/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(fetchBody),

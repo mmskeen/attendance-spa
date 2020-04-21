@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Navbar from "./Navbar";
 
@@ -12,18 +12,15 @@ const ProfileEdit = ({ user, onSaveUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("e.target: ", e.target);
     const formData = new FormData(e.target);
     const data = {};
     formData.forEach((value, key) => { data[key] = value });
-    console.log("Data: ", data);
-    fetch(`/users/${user._id}`, {
+    fetch(`/api/users/${user._id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     }).then(response => response.json()
     ).then(data => {
-      console.log(data);
       onSaveUser(data);
       history.push("/profile");
     })
@@ -31,13 +28,12 @@ const ProfileEdit = ({ user, onSaveUser }) => {
 
   }
 
-  console.log(user);
   return (
     <div>
       <Navbar colored={false} />
       <div className="container">
         <h2>Profile</h2>
-        <form className="form-horizontal mt-4 pt-4" role="form" onSubmit={handleSubmit}>
+        <form className="profile-form form-horizontal mt-4 pt-4" onSubmit={handleSubmit}>
           <Link to="/profile" name="cancel" className="x">
             X
     </Link>

@@ -5,17 +5,15 @@ import Navbar from "./Navbar";
 const Profile = ({ user }) => {
 
   useEffect(() => {
-    console.log("user: ", user);
     document.body.id = "profile";
   });
 
-  console.log(user);
   return (
     <div>
       <Navbar colored={false} />
       <div className="container">
         <h2>Profile</h2>
-        <form className="form-horizontal mt-4 pt-4" role="form">
+        <form className="profile-form form-horizontal mt-4 pt-4">
           <div className="form-group">
             <label htmlFor="firstName" className="col-sm-3 control-label">
               First Name
